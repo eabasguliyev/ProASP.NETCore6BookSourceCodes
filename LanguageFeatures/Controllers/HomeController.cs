@@ -5,13 +5,7 @@ namespace LanguageFeatures.Controllers;
 
 public class HomeController: Controller{
     public ViewResult Index(){
-        Product?[] products = Product.GetProducts();
-
-        ShoppingCart cart = new(){
-            Products = products
-        };
-
-        Product[] productArray = {
+        IProductSelection cart = new ShoppingCart(
             new Product{
                 Name = "Kayak",
                 Price = 275M
@@ -28,22 +22,9 @@ public class HomeController: Controller{
                 Name = "Corner flag",
                 Price = 34.95M
                 }
-        };
+        );
 
-        // Func<Product?, bool> nameFilter = delegate (Product? prod){
-        //     return prod?.Name?[0] == 'S';
-        // };
-
-        decimal priceFilterTotal = productArray.Filter(p => (p?.Price ?? 0) >= 20).TotalPrices();
-        decimal nameFilterTotal = productArray.Filter(p => p?.Name?[0] == 'S').TotalPrices();
-        
-        return View(new string[] {
-            $"Price Total: {priceFilterTotal:C2}",
-            $"Name Total: {nameFilterTotal:C2}",
-        });
+        return View(cart.Names);
     }
 
-    // private bool FilterByPrice(Product? p){
-    //     return (p?.Price ?? 0) >= 20;
-    // }
 }
