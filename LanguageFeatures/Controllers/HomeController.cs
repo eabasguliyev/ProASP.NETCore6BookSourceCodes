@@ -7,8 +7,14 @@ public class HomeController: Controller{
     public ViewResult Index(){
         Product?[] products = Product.GetProducts();
 
+        ShoppingCart cart = new(){
+            Products = products
+        };
+
+        decimal cartTotal = cart.TotalPrices();
+
         return View(new string[] {
-            products[0]!.Name // overriding null state analysis
+            $"Total: {cartTotal:C2}"
         });
     }
 }
