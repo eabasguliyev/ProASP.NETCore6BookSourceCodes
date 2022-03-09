@@ -5,11 +5,14 @@ namespace LanguageFeatures.Controllers;
 
 public class HomeController: Controller{
     public async Task<ViewResult> Index(){
-        long? length = await MyAsyncMethods.GetPageLength();
+        List<string> output = new();
 
-        return View(new string[] {
-            $"Length: {length}"
-        });
+        await foreach (long? len in MyAsyncMethods.GetPageLengths(output, 
+        "apress.com", "microsoft.com", "amazon.com"))
+        {
+            output.Add($"Page length: {len}");
+        }
+
+        return View(output);
     }
-
 }
