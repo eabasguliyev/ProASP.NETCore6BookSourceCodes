@@ -1,0 +1,14 @@
+Sample dotnet commands:
+	creating project add to sln:
+		# dotnet new globaljson --sdk-version 6.0.100 --output PartyInvites
+		# dotnet new mvc --no-https --output PartyInvites --framework net6.0
+		# dotnet new sln -o PartyInvites
+		# dotnet sln PartyInvites add PartyInvites
+
+
+	build, run and watch commands:
+		# dotnet build
+		# dotnet run 
+		# dotnet run --no-build
+		# dotnet watch
+		
