@@ -8,7 +8,7 @@ public class HomeController: Controller{
         Product?[] products = Product.GetProducts();
 
         return View(new string[] {
-            products[0]!.Name // overriding nul state analysis
+            products[0]!.Name // overriding null state analysis
         });
     }
 }
