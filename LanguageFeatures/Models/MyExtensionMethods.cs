@@ -1,11 +1,11 @@
 namespace LanguageFeatures.Models;
 
 public static class MyExtensionMethods{
-    public static decimal TotalPrices(this ShoppingCart cartParam){
+    public static decimal TotalPrices(this IEnumerable<Product?> products){
         decimal total = 0;
 
-        if(cartParam.Products != null){
-            foreach (Product? product in cartParam.Products)
+        if(products != null){
+            foreach (Product? product in products)
             {
                 total += product?.Price ?? 0;
             }
