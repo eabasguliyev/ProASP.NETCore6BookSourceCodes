@@ -33,3 +33,6 @@ Sample dotnet commands:
 		
 		Installing Bootstrap CSS Framework:
 			# libman install bootstrap@5.1.3 -d wwwroot/lib/bootstrap
+	
+	Add reference to project:
+		# dotnet add SimpleApp.Tests reference SimpleApp
