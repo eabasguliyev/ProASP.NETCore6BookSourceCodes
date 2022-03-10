@@ -36,3 +36,10 @@ Sample dotnet commands:
 	
 	Add reference to project:
 		# dotnet add SimpleApp.Tests reference SimpleApp
+		
+	
+	Managing EntityFrameworkCore tool:
+		Add migration:
+			# dotnet ef migrations add <migration-name>
+		Resetting the database:
+			# dotnet ef database drop --force --context StoreDbContext
