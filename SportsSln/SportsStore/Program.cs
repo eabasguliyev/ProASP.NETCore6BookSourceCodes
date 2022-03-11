@@ -16,6 +16,18 @@ var app = builder.Build();
 // Middlewares
 app.UseStaticFiles();
 
+app.MapControllerRoute("catpage",
+ "{category}/Page/{productPage:int}",
+ new { Controller = "Home", Action = "Index"});
+
+app.MapControllerRoute("page",
+ "Page/{productPage:int}",
+ new { Controller = "Home", Action = "Index", productPage = 1});
+ 
+app.MapControllerRoute("category",
+ "{category}",
+ new { Controller = "Home", Action = "Index", productPage = "1"});
+ 
 app.MapControllerRoute("pagination", 
                 "Products/Page/{productPage}",
                 new {
