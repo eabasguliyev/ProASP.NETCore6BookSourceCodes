@@ -9,7 +9,7 @@ builder.Services.AddDbContext<StoreDbContext>(opts => {
     opts.UseSqlServer(builder.Configuration["ConnectionStrings:SportsStoreConnection"]);
 });
 builder.Services.AddScoped<IStoreRepository, EFStoreRepository>();
-
+builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
@@ -35,6 +35,8 @@ app.MapControllerRoute("pagination",
                     Action = "Index"
                 });
 app.MapDefaultControllerRoute();
+app.MapRazorPages();
+
 app.EnsurePopulated();
 
 app.Run();

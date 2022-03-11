@@ -155,6 +155,7 @@ public class HomeControllerTests{
         int? res2 = GetModel(target.Index("Cat2") as ViewResult ?? new ViewResult())?.PagingInfo.TotalItems;
         int? res3 = GetModel(target.Index("Cat3") as ViewResult ?? new ViewResult())?.PagingInfo.TotalItems;
         int? resAll = GetModel(target.Index(null) as ViewResult ?? new ViewResult())?.PagingInfo.TotalItems;
+        
         // Assert
         Assert.Equal(2, res1);
         Assert.Equal(2, res2);
