@@ -30,7 +30,7 @@ public class HomeControllerTests{
         HomeController controller = new(mock.Object); 
         
         // Act
-        ProductsListViewModel result = (controller.Index() as ViewResult)?.ViewData.Model as ProductsListViewModel ?? new();
+        ProductsListViewModel result = (controller.Index(null) as ViewResult)?.ViewData.Model as ProductsListViewModel ?? new();
 
         // Assert
         Product[] prodArray = result.Products.ToArray();
@@ -60,7 +60,7 @@ public class HomeControllerTests{
 
         // Act
         ProductsListViewModel result = 
-                (controller.Index(2) as ViewResult)?.ViewData.Model
+                (controller.Index(null, 2) as ViewResult)?.ViewData.Model
                     as ProductsListViewModel
                      ?? new();
     
@@ -91,7 +91,7 @@ public class HomeControllerTests{
         };
     
         // Act
-        ProductsListViewModel result = (controller.Index(2) as ViewResult)?.ViewData.Model as ProductsListViewModel ?? new();
+        ProductsListViewModel result = (controller.Index(null, 2) as ViewResult)?.ViewData.Model as ProductsListViewModel ?? new();
         
         // Assert
         PagingInfo pageInfo = result.PagingInfo;
