@@ -3,7 +3,7 @@
 <div class="d-grid gap-2">
     <a asp-controller="Home" asp-action="Index" 
         asp-route-category=""
-        class="btn btn-outline-secondary">
+        class='btn @(string.IsNullOrWhiteSpace(ViewBag.SelectedCategory) ? "btn-primary": "btn-outline-secondary")'>
         Home 
     </a>
 
@@ -12,7 +12,7 @@
         <a asp-controller="Home" asp-action="Index" 
             asp-route-category="@category"
             asp-route-productPage="1"
-            class="btn btn-outline-secondary">
+            class='btn @(category == ViewBag.SelectedCategory ? "btn-primary": "btn-outline-secondary")'>
             @category 
         </a>
     }

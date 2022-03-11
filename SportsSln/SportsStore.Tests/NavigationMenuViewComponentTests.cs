@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc.ViewComponents;
+using Microsoft.AspNetCore.Routing;
 using Moq;
 using SportsStore.Components;
 using SportsStore.Models;
@@ -16,6 +17,37 @@ public class NavigationMenuViewComponentTests{
     {
         this.output = output;
     }
+
+    [Fact]
+    public void Indicates_Selected_Category()
+    {
+        // Arrange
+        string categoryToSelect = "Apples";
+        Mock<IStoreRepository> mock = new();
+        mock.Setup(m => m.Products).Returns(
+            (new Product[]{
+                new Product {ProductID = 1, Name = "P1", Category = "Apples"},
+                new Product {ProductID = 4, Name = "P2", Category = "Oranges"},
+            }).AsQueryable<Product>()
+        );
+    
+        NavigationMenuViewComponent target = new(mock.Object);
+
+        target.ViewComponentContext = new ViewComponentContext{
+            ViewContext = new Microsoft.AspNetCore.Mvc.Rendering.ViewContext{
+                RouteData = new RouteData(),
+            }
+        };
+
+        target.RouteData.Values["category"] = categoryToSelect;
+
+        // Action
+        string? result = (string?)(target.Invoke() as ViewViewComponentResult)?.ViewData?["SelectedCategory"];
+    
+        // Assert
+        Assert.Equal(categoryToSelect, result);
+    }
+
     [Fact]
     public void Can_Select_Categories()
     {
