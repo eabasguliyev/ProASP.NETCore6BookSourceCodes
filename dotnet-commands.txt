@@ -41,5 +41,7 @@ Sample dotnet commands:
 	Managing EntityFrameworkCore tool:
 		Add migration:
 			# dotnet ef migrations add <migration-name>
+		Update database:
+			# dotnet ef database update
 		Resetting the database:
 			# dotnet ef database drop --force --context StoreDbContext
