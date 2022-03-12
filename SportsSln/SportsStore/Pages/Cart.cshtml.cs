@@ -17,7 +17,7 @@ public class CartModel: PageModel{
     public string ReturnUrl { get; set; } = "/";
 
     public void OnGet(string returnUrl){
-        returnUrl = returnUrl ?? "/";
+        ReturnUrl = returnUrl ?? "/";
         Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
     }
 
